@@ -6,29 +6,22 @@
             ),
         @Grab(
             group="io.github.http-builder-ng",
-            module="http-builder-ng-apache",
+            module="http-builder-ng-core",
             version="1.0.3"
             )
 ])
 import static groovyx.net.http.HttpBuilder.configure
 import static groovyx.net.http.ContentTypes.JSON
 import groovyx.net.http.*
+import java.net.URLEncoder
 
 def prepareReportFile(testRailURL, testRailUser, testRailAPIKey, testRunId) {
     HttpBuilder.configure {
-        request.uri = testRailURL
+        request.raw = "${testRailURL}/index.php?/api/v2/get_run/${testRunId}"
         request.auth.basic testRailUser, testRailAPIKey
     }.get {
-        request.uri.path = "/index.php?api/v2/get_run/$testRunId"
         response.success { fromServer, body ->
-            println body
+            println body.toString()
         }
     }
 }
-
-def testRailUser = "automation@leovegas.com"
-def testRailAPIKey = "21r5CNabjFgBbpr9iqUu-MAtiUW5OWRrWejWPV2bp"
-def testRunId = "232"
-def testRailURL = "https://leogears.testrail.net"
-
-prepareReportFile(testRailURL, testRailUser, testRailAPIKey, testRunId)
