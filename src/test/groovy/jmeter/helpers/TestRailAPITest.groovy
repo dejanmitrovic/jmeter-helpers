@@ -30,3 +30,4 @@ class RequestTest extends Specification {
          def ex = thrown(IllegalArgumentException)
          ex.message == "testRailURL parameter must be valid URL"
      }
+}
