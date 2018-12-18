@@ -11,6 +11,7 @@ jobs:
             apt-get update
             apt-get -qq -y install curl unzip openjdk-8-jre zip
             curl -s "https://get.sdkman.io" | bash
+            source "/root/.sdkman/bin/sdkman-init.sh"
             sdk install groovy
             sdk install gradle
       - run:
