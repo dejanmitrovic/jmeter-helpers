@@ -2,7 +2,7 @@ package jmeter.helpers
 
 import spock.lang.Specification
 
-class RequestTest extends Specification {
+class TestRailAPITest extends Specification {
 
 	def "Initializing TestRailAPI with empty testRailURL throws IllegalArgumentException with message 'testRailURL parameter must be valid URL'"() {
     	when:
