@@ -18,3 +18,5 @@ jobs:
           name: Test
           command: |
             ./gradlew clean build
+      - store_test_results:
+           path: "build/test-results"
