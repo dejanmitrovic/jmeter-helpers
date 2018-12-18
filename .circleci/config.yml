@@ -17,4 +17,4 @@ jobs:
       - run:
           name: Test
           command: |
-            ls
+            ./gradlew clean build
