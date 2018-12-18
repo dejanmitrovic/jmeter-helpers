@@ -1,6 +1,7 @@
 package jmeter.helpers
 
 import groovy.json.JsonSlurper
+import org.apache.commons.validator.routines.*
 
 /**
   * Helper for common actions against TestRail API.
@@ -22,6 +23,9 @@ class TestRailAPI {
 	 * @param testRailAPIKey Password or API key to authenticate against TestRail API
      */
 	TestRailAPI(testRailURL, testRailUser, testRailAPIKey) {
+        if(!(new UrlValidator().isValid(testRailURL))) {
+             throw new IllegalArgumentException("testRailURL parameter must be valid URL")
+         }
 		this.testRailURL = testRailURL
 		this.testRailUser = testRailUser
 		this.testRailAPIKey = testRailAPIKey
